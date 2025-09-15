@@ -1,0 +1,133 @@
+# Medicine Reminder App - Requirements
+
+## Functional Requirements
+
+### FR1: User Onboarding & Setup
+- FR1.1: User can set locale, timezone, and unit preferences (mg/mL, 12/24-hour)
+- FR1.2: System requests notification and alarm permissions
+- FR1.3: Optional calendar access permission
+- FR1.4: Guided wizard for adding first medication
+
+### FR2: Medication Management (CRUD)
+- FR2.1: User can search for medications from drug database
+- FR2.2: User can manually enter medication details (name, strength, form)
+- FR2.3: Support for multiple dosage forms (pill, liquid, injection)
+- FR2.4: User can edit and delete existing medications
+- FR2.5: Medication categorization and organization
+
+### FR3: Scheduling System
+- FR3.1: Fixed time scheduling (specific times daily)
+- FR3.2: Interval-based scheduling (every 6 hours)
+- FR3.3: PRN (as needed) with maximum daily limits
+- FR3.4: Taper schedules (decreasing doses over time)
+- FR3.5: Cycle schedules (21 days on, 7 days off)
+- FR3.6: Specific weekday scheduling
+- FR3.7: "With meals" and "at bedtime" options
+- FR3.8: Start and end date management
+- FR3.9: Skip date functionality
+
+### FR4: Reminder & Notification System
+- FR4.1: Push notifications for scheduled doses
+- FR4.2: Snooze functionality (5/10/30 minutes)
+- FR4.3: Skip dose with optional reason
+- FR4.4: Reschedule for current day only
+- FR4.5: Escalating reminders for repeated snoozing
+- FR4.6: Quiet hours with critical medication override
+
+### FR5: Intake Logging
+- FR5.1: Record actual intake time and dose amount
+- FR5.2: Add notes for symptoms or side effects
+- FR5.3: Handle missed doses with grace period
+- FR5.4: Late dose policy management
+
+### FR6: Adherence Tracking
+- FR6.1: Daily and weekly adherence views
+- FR6.2: Streak tracking per medication
+- FR6.3: Overall adherence percentage calculation
+- FR6.4: Timeline and calendar views
+- FR6.5: Filter by medication or missed doses only
+- FR6.6: Export data as PDF/CSV
+
+### FR7: Refill Management
+- FR7.1: Inventory tracking with automatic decrement
+- FR7.2: Refill threshold alerts
+- FR7.3: Mark medication as ordered/picked up
+- FR7.4: Pharmacy integration (optional)
+
+### FR8: Safety Features
+- FR8.1: Drug interaction warnings
+- FR8.2: Maximum daily dose alerts (e.g., acetaminophen)
+- FR8.3: Allergy and contraindication management
+- FR8.4: Duplicate medication detection
+
+### FR9: Care Team & Sharing
+- FR9.1: Caregiver mode with shared access
+- FR9.2: Multiple user profiles (parent-child)
+- FR9.3: Missed dose alerts to caregivers
+- FR9.4: Care team member management
+
+### FR10: Account & Security
+- FR10.1: User authentication with password reset
+- FR10.2: Two-factor authentication
+- FR10.3: Biometric unlock
+- FR10.4: Data encryption and secure storage
+- FR10.5: Cloud synchronization
+- FR10.6: Offline functionality with sync queue
+
+## Non-Functional Requirements
+
+### NFR1: Performance
+- NFR1.1: App launch time < 3 seconds
+- NFR1.2: Notification delivery within 30 seconds of scheduled time
+- NFR1.3: Data sync completion < 10 seconds
+- NFR1.4: Support for 100+ medications per user
+
+### NFR2: Usability
+- NFR2.1: Intuitive interface requiring minimal training
+- NFR2.2: Accessibility compliance (WCAG 2.1 AA)
+- NFR2.3: Support for large text and voice prompts
+- NFR2.4: Colorblind-safe design
+
+### NFR3: Reliability
+- NFR3.1: 99.9% uptime for critical reminder functionality
+- NFR3.2: Automatic backup and recovery
+- NFR3.3: Graceful handling of network interruptions
+- NFR3.4: Duplicate reminder prevention
+
+### NFR4: Security
+- NFR4.1: HIPAA compliance for health data
+- NFR4.2: End-to-end encryption for sensitive data
+- NFR4.3: Secure authentication protocols
+- NFR4.4: Regular security audits
+
+### NFR5: Compatibility
+- NFR5.1: Cross-platform support (iOS/Android)
+- NFR5.2: Multiple timezone handling
+- NFR5.3: Daylight saving time adaptation
+- NFR5.4: Device change synchronization
+
+### NFR6: Scalability
+- NFR6.1: Support for growing user base
+- NFR6.2: Efficient database queries
+- NFR6.3: Cloud infrastructure auto-scaling
+- NFR6.4: Modular architecture for feature expansion
+
+## Technical Constraints
+
+### TC1: Platform Requirements
+- TC1.1: Firebase as primary backend service
+- TC1.2: Native mobile app development
+- TC1.3: Offline-first architecture
+- TC1.4: Real-time data synchronization
+
+### TC2: Integration Requirements
+- TC2.1: OS notification system integration
+- TC2.2: Calendar app integration (optional)
+- TC2.3: Pharmacy system APIs (future)
+- TC2.4: Healthcare provider systems (future)
+
+### TC3: Data Requirements
+- TC3.1: Local encrypted storage
+- TC3.2: Cloud backup and sync
+- TC3.3: Data export capabilities
+- TC3.4: GDPR compliance for data deletion
