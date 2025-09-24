@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 // Use Expo's vector icons which are compatible with React Native.
 // MaterialCommunityIcons includes several calendar icons; pick the one
 // that best matches your design (here we use "calendar-month").
@@ -13,7 +13,10 @@ export default function MedManage() {
             <Text>Med-manage</Text>
             {/* Render a native-friendly calendar icon. Specify size and
                     color to match the app theme. */}
-            <EvilIcons name="calendar" size={200} color="mint" />
+            <Pressable onPress={onPressFunction}>
+                <Text>HI</Text>
+            </Pressable>
+                
         </View>
 
     );
@@ -21,11 +24,11 @@ export default function MedManage() {
 
 const styles = StyleSheet.create({
     container: {
-        
-        paddingTop: 60,
-    },
-    calender: {
+        flex:1,
+        backgroundColor: '#ffffffff',
         alignItems: 'center',
-        backgroundColor: '#b13535ff',
+        justifyContent: 'center',
+        
+ 
     },
 });
