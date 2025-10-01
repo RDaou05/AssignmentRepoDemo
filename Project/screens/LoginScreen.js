@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from '../firebase';
+import { loginUser, registerUser, resetPassword } from '../services/authService';
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
@@ -9,18 +9,37 @@ export default function LoginScreen({ navigation }) {
   const [loading, setLoading] = useState(false);
 
   const handleAuth = async () => {
+    if (!email || !password) {
+      Alert.alert('Error', 'Please fill in all fields');
+      return;
+    }
+
     setLoading(true);
     try {
       if (isLogin) {
-        await signInWithEmailAndPassword(auth, email, password);
+        await loginUser(email, password);
       } else {
-        await createUserWithEmailAndPassword(auth, email, password);
+        await registerUser(email, password);
       }
       navigation.navigate('med-manage');
     } catch (error) {
       Alert.alert('Error', error.message);
     }
     setLoading(false);
+  };
+
+  const handleForgotPassword = async () => {
+    if (!email) {
+      Alert.alert('Error', 'Please enter your email address');
+      return;
+    }
+
+    try {
+      await resetPassword(email);
+      Alert.alert('Success', 'Password reset email sent!');
+    } catch (error) {
+      Alert.alert('Error', error.message);
+    }
   };
 
   return (
@@ -58,6 +77,15 @@ export default function LoginScreen({ navigation }) {
             {loading ? 'Please wait...' : (isLogin ? 'Sign In' : 'Create Account')}
           </Text>
         </TouchableOpacity>
+        
+        {isLogin && (
+          <TouchableOpacity 
+            style={styles.forgotButton}
+            onPress={handleForgotPassword}
+          >
+            <Text style={styles.forgotText}>Forgot Password?</Text>
+          </TouchableOpacity>
+        )}
         
         <TouchableOpacity 
           style={styles.switchButton}
@@ -129,5 +157,15 @@ const styles = StyleSheet.create({
     color: '#3fa58e',
     fontSize: 16,
     fontWeight: '600',
+  },
+  forgotButton: {
+    alignItems: 'center',
+    paddingVertical: 8,
+    marginBottom: 16,
+  },
+  forgotText: {
+    color: '#6B7280',
+    fontSize: 14,
+    fontWeight: '500',
   },
 });
